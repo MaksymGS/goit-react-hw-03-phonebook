@@ -1,13 +1,12 @@
 import React from 'react';
-import { DeleteButton, ListItem } from './ContactItem.styled';
+import { DeleteButton, ListItem, Number } from './ContactItem.styled';
 import { AiFillCloseCircle } from 'react-icons/ai';
 
 export const ContactItem = ({ id, name, number, onDelete }) => {
   return (
     <ListItem>
-      <p>
-        {name} : <span>{number}</span>
-      </p>
+      <p>{name} :</p>
+      <Number>{number}</Number>
       <DeleteButton onClick={() => onDelete(id)}>
         <AiFillCloseCircle size={18} />
       </DeleteButton>

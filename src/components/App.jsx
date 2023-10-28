@@ -10,6 +10,21 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const localStorageContacts = localStorage.getItem('storedContacts');
+    if (localStorageContacts !== null) {
+      this.setState({ contacts: JSON.parse(localStorageContacts) });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(
+        'storedContacts',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
   addContacts = objContact => {
     if (this.state.contacts.some(contact => contact.name === objContact.name)) {
       alert(`${objContact.name} is already in the phone book`);
